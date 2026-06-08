@@ -1,0 +1,68 @@
+{
+  "fpsflow.name": "FPSFlow",
+
+  "profile.quality": "Qualität",
+  "profile.balanced": "Ausgewogen",
+  "profile.performance": "Leistung",
+  "profile.ultra_performance": "Ultra-Leistung",
+
+  "fpsflow.config.title": "FPSFlow-Konfiguration",
+  "fpsflow.config.profile": "Leistungsprofil",
+  "fpsflow.config.profile.tooltip": "Wähle eine Voreinstellung, die alle Einstellungen automatisch anpasst.",
+
+  "fpsflow.config.entity_culling": "Entity-Culling",
+  "fpsflow.config.entity_culling.enabled": "Entity-Culling aktivieren",
+  "fpsflow.config.entity_culling.enabled.tooltip": "Überspringt das Rendern von Entities, die für den Spieler nicht sichtbar sind.",
+  "fpsflow.config.entity_culling.occlusion": "Okklusions-Culling",
+  "fpsflow.config.entity_culling.occlusion.tooltip": "Verwendet Raycasting, um Entities hinter festen Blöcken zu erkennen.",
+  "fpsflow.config.entity_culling.async_occlusion": "Asynchrones Okklusions-Culling",
+  "fpsflow.config.entity_culling.async_occlusion.tooltip": "Verteilt Okklusionsprüfungen auf mehrere Ticks, um Frame-Spitzen zu vermeiden.",
+  "fpsflow.config.entity_culling.max_distance": "Maximale Renderdistanz",
+  "fpsflow.config.entity_culling.max_distance.tooltip": "Entities jenseits dieser Distanz (in Blöcken) werden niemals gerendert.",
+  "fpsflow.config.entity_culling.cache_interval": "Cache-Aktualisierungsintervall (Ticks)",
+  "fpsflow.config.entity_culling.cache_interval.tooltip": "Wie viele Ticks zwischen erneuten Okklusionsprüfungen pro Entity. Höher = schneller, aber weniger genau.",
+  "fpsflow.config.entity_culling.entity_type_overrides": "Typbasierte Ausnahmen",
+  "fpsflow.config.entity_culling.entity_type_overrides.tooltip": "Überschreibt Culling für bestimmte Entity-Typen. false = diesen Typ nie cullen.",
+
+  "fpsflow.config.block_entity_culling": "Block-Entity-Culling",
+  "fpsflow.config.block_entity_culling.enabled": "Block-Entity-Culling aktivieren",
+  "fpsflow.config.block_entity_culling.enabled.tooltip": "Überspringt das Rendern entfernter Block-Entities wie Kisten, Öfen, Schilder und Banner.",
+  "fpsflow.config.block_entity_culling.max_distance": "Maximale Renderdistanz",
+  "fpsflow.config.block_entity_culling.max_distance.tooltip": "Block-Entities jenseits dieser Distanz (in Blöcken) werden nicht gerendert.",
+
+  "fpsflow.config.particle": "Partikel-Optimierung",
+  "fpsflow.config.particle.enabled": "Partikelbegrenzung aktivieren",
+  "fpsflow.config.particle.enabled.tooltip": "Verhindert das Entstehen neuer Partikel, wenn Limits erreicht werden.",
+  "fpsflow.config.particle.max_particles": "Maximale aktive Partikel",
+  "fpsflow.config.particle.max_particles.tooltip": "Sobald diese Anzahl erreicht ist, werden keine neuen Partikel mehr erzeugt.",
+  "fpsflow.config.particle.max_distance": "Maximale Partikeldistanz",
+  "fpsflow.config.particle.max_distance.tooltip": "Partikel, die weiter als diese Distanz (in Blöcken) vom Spieler entfernt entstehen, werden übersprungen.",
+
+  "fpsflow.config.gui": "GUI-Optimierung",
+  "fpsflow.config.gui.enabled": "GUI-Optimierung aktivieren",
+  "fpsflow.config.gui.enabled.tooltip": "Reduziert unnötige HUD-Draw-Calls und erneutes Rendern.",
+  "fpsflow.config.gui.hotbar_caching": "Hotbar-Slot-Caching",
+  "fpsflow.config.gui.hotbar_caching.tooltip": "Verfolgt Item-Änderungen je Hotbar-Slot, um überflüssige Icon-Verarbeitung zu vermeiden.",
+  "fpsflow.config.gui.hud_throttling": "HUD-Update-Drosselung",
+  "fpsflow.config.gui.hud_throttling.tooltip": "Begrenzt unkritische HUD-Updates auf jeden zweiten Tick.",
+
+  "fpsflow.config.render_cache": "Render-Caching",
+  "fpsflow.config.render_cache.enabled": "Render-Caching aktivieren",
+  "fpsflow.config.render_cache.enabled.tooltip": "Cached berechnete Rendering-Daten, um redundante Berechnungen pro Frame zu vermeiden.",
+
+  "fpsflow.config.world_join_optimizer": "Welt-Join-Optimierung",
+  "fpsflow.config.world_join_optimizer.enabled": "Welt-Join-Optimierung aktivieren",
+  "fpsflow.config.world_join_optimizer.enabled.tooltip": "Reduziert Cull-Distanzen für einige Sekunden nach dem Joinen, um den anfänglichen FPS-Einbruch zu dämpfen.",
+  "fpsflow.config.world_join_optimizer.grace_period": "Schonfrist (Ticks)",
+  "fpsflow.config.world_join_optimizer.grace_period.tooltip": "Wie viele Ticks nach dem Joinen, bevor die Cull-Distanzen wieder normal werden. 200 = 10 Sekunden.",
+
+  "fpsflow.config.update_checker": "Update-Checker",
+  "fpsflow.config.update_checker.enabled": "Update-Checker aktivieren",
+  "fpsflow.config.update_checker.enabled.tooltip": "Prüft Modrinth beim Start auf neue FPSFlow-Versionen.",
+
+  "fpsflow.update.available": "Eine neue Version von FPSFlow ist verfügbar: %s → %s (auf Modrinth prüfen)",
+
+  "fpsflow.compat.entity_culling_detected": "EntityCulling-Mod erkannt – FPSFlow-Entity-Culling deaktiviert, um Konflikte zu vermeiden.",
+  "fpsflow.compat.immediately_fast_detected": "ImmediatelyFast erkannt – FPSFlow-HUD-Caching zurückgestellt.",
+  "fpsflow.compat.sodium_detected": "Sodium erkannt – FPSFlow fügt Entity- und GUI-Optimierungen hinzu."
+}

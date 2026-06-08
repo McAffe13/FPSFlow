@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "dev.fpsflow.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "entity.EntityRenderManagerMixin",
+    "blockentity.BlockEntityRenderManagerMixin",
+    "particle.ParticleManagerMixin",
+    "gui.InGameHudMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

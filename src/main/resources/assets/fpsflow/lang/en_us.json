@@ -1,0 +1,68 @@
+{
+  "fpsflow.name": "FPSFlow",
+
+  "profile.quality": "Quality",
+  "profile.balanced": "Balanced",
+  "profile.performance": "Performance",
+  "profile.ultra_performance": "Ultra Performance",
+
+  "fpsflow.config.title": "FPSFlow Configuration",
+  "fpsflow.config.profile": "Performance Profile",
+  "fpsflow.config.profile.tooltip": "Select a preset that adjusts all settings automatically.",
+
+  "fpsflow.config.entity_culling": "Entity Culling",
+  "fpsflow.config.entity_culling.enabled": "Enable Entity Culling",
+  "fpsflow.config.entity_culling.enabled.tooltip": "Skip rendering entities that are not visible to the player.",
+  "fpsflow.config.entity_culling.occlusion": "Occlusion Culling",
+  "fpsflow.config.entity_culling.occlusion.tooltip": "Use raycasting to detect entities hidden behind solid blocks.",
+  "fpsflow.config.entity_culling.async_occlusion": "Async Occlusion",
+  "fpsflow.config.entity_culling.async_occlusion.tooltip": "Spread occlusion raycasts across multiple ticks to prevent frame spikes.",
+  "fpsflow.config.entity_culling.max_distance": "Maximum Render Distance",
+  "fpsflow.config.entity_culling.max_distance.tooltip": "Entities beyond this distance (in blocks) are never rendered.",
+  "fpsflow.config.entity_culling.cache_interval": "Cache Update Interval (ticks)",
+  "fpsflow.config.entity_culling.cache_interval.tooltip": "How many ticks between occlusion re-checks per entity. Higher = faster but less accurate.",
+  "fpsflow.config.entity_culling.entity_type_overrides": "Per-Type Overrides",
+  "fpsflow.config.entity_culling.entity_type_overrides.tooltip": "Map of entity type IDs to culling override. false = never cull this type.",
+
+  "fpsflow.config.block_entity_culling": "Block Entity Culling",
+  "fpsflow.config.block_entity_culling.enabled": "Enable Block Entity Culling",
+  "fpsflow.config.block_entity_culling.enabled.tooltip": "Skip rendering distant block entities such as chests, furnaces, signs, and banners.",
+  "fpsflow.config.block_entity_culling.max_distance": "Maximum Render Distance",
+  "fpsflow.config.block_entity_culling.max_distance.tooltip": "Block entities beyond this distance (in blocks) are not rendered.",
+
+  "fpsflow.config.particle": "Particle Optimization",
+  "fpsflow.config.particle.enabled": "Enable Particle Limits",
+  "fpsflow.config.particle.enabled.tooltip": "Prevent new particles from spawning when limits are reached.",
+  "fpsflow.config.particle.max_particles": "Maximum Active Particles",
+  "fpsflow.config.particle.max_particles.tooltip": "No new particles are spawned once this count is reached.",
+  "fpsflow.config.particle.max_distance": "Maximum Particle Distance",
+  "fpsflow.config.particle.max_distance.tooltip": "Particles spawning further than this distance (in blocks) from the player are skipped.",
+
+  "fpsflow.config.gui": "GUI Optimization",
+  "fpsflow.config.gui.enabled": "Enable GUI Optimization",
+  "fpsflow.config.gui.enabled.tooltip": "Reduce unnecessary HUD draw calls and re-renders.",
+  "fpsflow.config.gui.hotbar_caching": "Hotbar Slot Caching",
+  "fpsflow.config.gui.hotbar_caching.tooltip": "Track item changes per hotbar slot to skip redundant icon processing.",
+  "fpsflow.config.gui.hud_throttling": "HUD Update Throttling",
+  "fpsflow.config.gui.hud_throttling.tooltip": "Limit non-critical HUD updates to every other tick.",
+
+  "fpsflow.config.render_cache": "Render Caching",
+  "fpsflow.config.render_cache.enabled": "Enable Render Caching",
+  "fpsflow.config.render_cache.enabled.tooltip": "Cache computed rendering data to avoid redundant calculations per frame.",
+
+  "fpsflow.config.world_join_optimizer": "World Join Optimizer",
+  "fpsflow.config.world_join_optimizer.enabled": "Enable World Join Optimizer",
+  "fpsflow.config.world_join_optimizer.enabled.tooltip": "Tighten culling distances for a few seconds after joining a world to reduce the initial FPS spike.",
+  "fpsflow.config.world_join_optimizer.grace_period": "Grace Period (ticks)",
+  "fpsflow.config.world_join_optimizer.grace_period.tooltip": "How many ticks after joining before culling distances return to normal. 200 = 10 seconds.",
+
+  "fpsflow.config.update_checker": "Update Checker",
+  "fpsflow.config.update_checker.enabled": "Enable Update Checker",
+  "fpsflow.config.update_checker.enabled.tooltip": "Check Modrinth for new FPSFlow versions on startup.",
+
+  "fpsflow.update.available": "A new version of FPSFlow is available: %s → %s (check Modrinth)",
+
+  "fpsflow.compat.entity_culling_detected": "EntityCulling mod detected – FPSFlow entity culling disabled to avoid conflicts.",
+  "fpsflow.compat.immediately_fast_detected": "ImmediatelyFast detected – FPSFlow HUD caching deferred.",
+  "fpsflow.compat.sodium_detected": "Sodium detected – FPSFlow adds entity/GUI optimizations on top."
+}

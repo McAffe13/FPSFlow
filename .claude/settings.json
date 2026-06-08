@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://api.modrinth.com/v2/project/P7dR8mSH/version?game_versions=[%221.21.11%22]&loaders=[%22fabric%22]\")",
+      "Bash(python3 -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(v['version_number']\\) for v in data[:5]]\")",
+      "Bash(curl -v \"https://maven.fabricmc.net/net/fabricmc/fabric-api/maven-metadata.xml\")",
+      "Bash(curl -s \"https://api.modrinth.com/v2/project/P7dR8mSH/version?loaders=%5B%22fabric%22%5D&game_versions=%5B%221.21.11%22%5D\")",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s \"https://maven.fabricmc.net/fabric-loom/fabric-loom.gradle.plugin/maven-metadata.xml\")",
+      "Bash(jar tf *)",
+      "Bash(grep \"\\\\.class$\")",
+      "Bash(grep \"render/entity/[^/]*\\\\.class$\")",
+      "Bash(javap -classpath /home/moritz/Minecraft/Plugins⁄mods/FPSFlow/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-6dd721cd7d/1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2/minecraft-merged-6dd721cd7d-1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2.jar net.minecraft.client.render.entity.EntityRenderer)",
+      "Bash(javap -classpath /home/moritz/Minecraft/Plugins⁄mods/FPSFlow/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-6dd721cd7d/1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2/minecraft-merged-6dd721cd7d-1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2.jar net.minecraft.client.render.entity.EntityRenderManager)",
+      "Bash(javap -classpath /home/moritz/Minecraft/Plugins⁄mods/FPSFlow/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-6dd721cd7d/1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2/minecraft-merged-6dd721cd7d-1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2.jar net.minecraft.client.gui.hud.InGameHud)",
+      "Bash(javap -classpath /home/moritz/Minecraft/Plugins⁄mods/FPSFlow/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-6dd721cd7d/1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2/minecraft-merged-6dd721cd7d-1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2.jar net.minecraft.entity.player.PlayerInventory)",
+      "Bash(javap -classpath /home/moritz/Minecraft/Plugins⁄mods/FPSFlow/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-6dd721cd7d/1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2/minecraft-merged-6dd721cd7d-1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2.jar net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher)",
+      "Bash(javap -classpath /home/moritz/Minecraft/Plugins⁄mods/FPSFlow/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-6dd721cd7d/1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2/minecraft-merged-6dd721cd7d-1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2.jar net.minecraft.client.render.block.entity.BlockEntityRenderManager)",
+      "Bash(javap -classpath /home/moritz/Minecraft/Plugins⁄mods/FPSFlow/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-6dd721cd7d/1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2/minecraft-merged-6dd721cd7d-1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2.jar net.minecraft.client.render.block.entity.state.BlockEntityRenderState)",
+      "Bash(javap -classpath /home/moritz/Minecraft/Plugins⁄mods/FPSFlow/.gradle/loom-cache/minecraftMaven/net/minecraft/minecraft-merged-6dd721cd7d/1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2/minecraft-merged-6dd721cd7d-1.21.11-net.fabricmc.yarn.1_21_11.1.21.11+build.6-v2.jar net.minecraft.client.render.state.CameraRenderState)"
+    ]
+  }
+}

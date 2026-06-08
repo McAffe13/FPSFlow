@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "fpsflow",
+  "version": "${version}",
+  "name": "FPSFlow",
+  "description": "Improve FPS with smart rendering, entity culling, adaptive optimizations, and configurable performance profiles.",
+  "authors": [
+    {
+      "name": "FPSFlow Contributors"
+    }
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/fpsflow",
+    "sources": "https://github.com/fpsflow/fpsflow",
+    "issues": "https://github.com/fpsflow/fpsflow/issues"
+  },
+  "license": "MPL-2.0",
+  "icon": "assets/fpsflow/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "dev.fpsflow.FPSFlow"
+    ],
+    "client": [
+      "dev.fpsflow.FPSFlowClient"
+    ],
+    "modmenu": [
+      "dev.fpsflow.modmenu.FPSFlowModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "fpsflow.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": ">=${minecraft_version}"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "sodium": "*",
+    "lithium": "*",
+    "ferritecore": "*"
+  }
+}
