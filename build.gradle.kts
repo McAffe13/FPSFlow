@@ -65,6 +65,14 @@ java {
     withSourcesJar()
 }
 
+// Reproducible builds: same source → same bytes → same SHA512 hash every time.
+// Without this, Gradle embeds different timestamps on each build, so Modrinth's
+// hash lookup can't match locally-built JARs to the uploaded version.
+tasks.withType<AbstractArchiveTask>().configureEach {
+    isPreserveFileTimestamps = false
+    isReproducibleFileOrder = true
+}
+
 tasks.jar {
     from("LICENSE") {
         rename { "${it}_${base.archivesName.get()}" }

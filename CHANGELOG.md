@@ -1,6 +1,13 @@
 # Changelog
 ---
 
+## [1.7.1]
+
+### Fixed
+- **Reproducible builds** — Gradle no longer embeds per-build timestamps inside the JAR. The same source code now always produces byte-for-byte identical output, so the SHA512 hash is stable across builds. This allows the Modrinth launcher to reliably identify locally-built JARs and track playtime correctly.
+
+---
+
 ## [1.7.0]
 
 ### Fixed
