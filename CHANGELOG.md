@@ -1,6 +1,50 @@
 # Changelog
 ---
 
+## [1.7.6]
+
+### Fixed
+- **Entity type override cache now resets after a profile switch** — The per-entity-type culling override cache (`entityTypeOverrides`) was computed once and never invalidated. Switching profiles replaced the underlying map reference but left stale cached results for entity types that had already been seen, so the new profile's overrides were silently ignored until the game was restarted. The cache is now cleared automatically whenever the overrides map reference changes.
+- **Config null-safety after manual JSON edits** — If a player manually edited `fpsflow.json` and set a section to `null` (e.g. `"entityCulling": null`), all reads from that section would throw a `NullPointerException`. All nested config objects are now replaced with their defaults if null after deserialization.
+- **Config screen title and Done button now use the translation system** — The screen title was hardcoded as `"FPSFlow Settings"` and the Done button as `"Done"`, bypassing the translation files. Both now use `Text.translatable` so German (and any future) translations apply correctly.
+
+### Changed
+- **Dead code removed** — `WorldRendererMixin.java` was never registered in `fpsflow.mixins.json` and had no effect at runtime. The file has been removed to avoid confusion.
+
+---
+
+## [1.7.5]
+
+### Fixed
+- **Update checker now works for all current and future Minecraft versions** — The Modrinth API query previously used `&featured=true`, which caused new releases to be missed if they were not explicitly marked "featured" on the project page. An intermediate fix tried filtering by the exact running MC version, but that would have broken detection for newer MC versions (e.g. 26.1, 26.2) whose version strings do not match the old format. The query now fetches all Fabric releases with no version filter and compares only the FPSFlow version number, so updates are reliably detected regardless of which Minecraft version the mod is built for.
+
+---
+
+## [1.7.4]
+
+### Fixed
+- **Entities no longer disappear when moving around corners** — The occlusion cache stored whether an entity was hidden, but did not track where the camera was when that raycast was taken. After the player moved, the old "occluded" result stayed in the cache for up to 10 ticks (0.5 s), making previously-hidden entities invisible even when now in plain sight. The cache now records the camera position at raycast time; if the camera has moved more than 1.5 blocks since then, the result is immediately discarded.
+- **Entities within 8 blocks are never occlusion-culled** — The previous safety margin was only 4 blocks. At 5–8 blocks the raycast is susceptible to precision errors (slab edges, floor-level geometry, crawling/swimming camera clips). Raising the threshold to 8 blocks eliminates false-positive culling at close range without any meaningful performance cost.
+- **Stale "occluded" result no longer used for nearby entities while async re-check is pending** — When a cache entry expires and the new check is queued asynchronously, entities within 24 blocks now show as visible while waiting for the result. Previously the old "hidden" answer was used unconditionally, so rapidly-moving close entities could wink out for several frames.
+- **Entities behind invisible blocks (barrier, light, structure void) are now visible** — The occlusion raycast treated these invisible blocks as solid, hiding any entity behind a barrier wall or inside a light-block setup. The raycast now steps past visually-passable blocks and retries, so only genuinely solid geometry counts as occlusion.
+
+---
+
+## [1.7.3]
+
+### Fixed
+- **Particle cap now applies to total live particles, not just new spawns per tick** — The `maxParticles` limit previously reset to zero every tick, allowing up to 4096 new particles to be added each tick regardless of how many were already alive. On high-particle servers (texture-pack servers, firework effects, etc.) this caused thousands of particles to accumulate and be ticked every frame. The cap is now seeded from the real live-particle count at the start of each tick, so the budget is correctly enforced.
+- **Per-particle spawn overhead eliminated** — The adaptive distance multiplier (derived from the smoothed FPS chain) was previously recomputed on every individual particle spawn attempt. It is now cached once per tick, reducing overhead proportional to the server's particle spawn rate.
+
+---
+
+## [1.7.2]
+
+### Fixed
+- **Crash on `NO_RENDER` particle tick eliminated** — Particles of type `NO_RENDER` (internal server-side particles) can have a null `SpriteProvider`. In MC 1.21.11 the resulting `NullPointerException` escaped the `safeParticleForEach` guard because the restructured particle-tick pipeline (`method_74282` → `class_11938`) caused it to propagate past the narrowly-typed `catch (NullPointerException)`. The catch now covers `Exception` broadly, and `e.toString()` is logged instead of `e.getMessage()` so exceptions with no message text are still reported correctly.
+
+---
+
 ## [1.7.1]
 
 ### Fixed

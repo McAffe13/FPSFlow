@@ -5,20 +5,29 @@ import dev.fpsflow.particles.ParticleOptimizer;
 import dev.fpsflow.rendering.AdaptiveRenderer;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.client.particle.ParticleTextureSheet;
 import net.minecraft.particle.ParticleEffect;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
+import java.util.Queue;
 import java.util.function.BiConsumer;
 
 @Mixin(ParticleManager.class)
 public abstract class ParticleManagerMixin {
 
+    @Shadow @Final private Map<ParticleTextureSheet, Queue<Particle>> particles;
+
     private static volatile long fpsflow$lastParticleErrorMs = 0L;
+    // Cached once per tick; avoids reading smoothed FPS on every particle spawn attempt.
+    private double fpsflow$cachedDistMult = 1.0;
 
     @Inject(
         method = "addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)Lnet/minecraft/client/particle/Particle;",
@@ -34,9 +43,7 @@ public abstract class ParticleManagerMixin {
         ParticleOptimizer optimizer = ParticleOptimizer.getInstance();
         if (!optimizer.isEnabled()) return;
 
-        double distMult = AdaptiveRenderer.getInstance().getParticleDistanceMultiplier();
-
-        if (optimizer.shouldBlockParticleWithMultiplier(x, y, z, distMult)) {
+        if (optimizer.shouldBlockParticleWithMultiplier(x, y, z, fpsflow$cachedDistMult)) {
             cir.setReturnValue(null);
             return;
         }
@@ -45,8 +52,16 @@ public abstract class ParticleManagerMixin {
     }
 
     @Inject(method = "tick", at = @At("HEAD"))
-    private void fpsflow$onTickStart(org.spongepowered.asm.mixin.injection.callback.CallbackInfo ci) {
-        ParticleOptimizer.getInstance().resetTickCount();
+    private void fpsflow$onTickStart(CallbackInfo ci) {
+        // Seed the cap from the real live-particle count so maxParticles applies to
+        // total alive particles, not just new spawns within a single tick.
+        int live = 0;
+        for (Queue<Particle> q : particles.values()) live += q.size();
+        ParticleOptimizer optimizer = ParticleOptimizer.getInstance();
+        optimizer.setActiveParticleCount(live);
+
+        // Cache once per tick – value changes at most once per tick via SmartRenderScheduler.
+        fpsflow$cachedDistMult = AdaptiveRenderer.getInstance().getParticleDistanceMultiplier();
     }
 
     // particles field in ParticleManager is declared as Map<> (interface), so the bytecode
@@ -62,11 +77,11 @@ public abstract class ParticleManagerMixin {
         map.forEach((k, v) -> {
             try {
                 consumer.accept(k, v);
-            } catch (NullPointerException e) {
+            } catch (Exception e) {
                 long now = System.currentTimeMillis();
                 if (now - fpsflow$lastParticleErrorMs > 5000L) {
                     fpsflow$lastParticleErrorMs = now;
-                    FPSFlow.LOGGER.warn("[FPSFlow] Particle tick NPE caught (stale entity reference) – crash prevented: {}", e.getMessage());
+                    FPSFlow.LOGGER.warn("[FPSFlow] Particle tick exception caught – crash prevented: {}", e.toString());
                 }
             }
         });

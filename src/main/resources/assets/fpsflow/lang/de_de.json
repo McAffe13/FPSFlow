@@ -6,7 +6,7 @@
   "profile.performance": "Leistung",
   "profile.ultra_performance": "Ultra-Leistung",
 
-  "fpsflow.config.title": "FPSFlow-Konfiguration",
+  "fpsflow.config.title": "FPSFlow-Einstellungen",
   "fpsflow.config.profile": "Leistungsprofil",
   "fpsflow.config.profile.tooltip": "Wähle eine Voreinstellung, die alle Einstellungen automatisch anpasst.",
 

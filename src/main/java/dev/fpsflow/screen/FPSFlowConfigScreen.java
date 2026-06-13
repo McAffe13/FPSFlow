@@ -36,7 +36,7 @@ public class FPSFlowConfigScreen extends Screen {
     private Tab currentTab = Tab.GENERAL;
 
     public FPSFlowConfigScreen(Screen parent) {
-        super(Text.literal("FPSFlow Settings"));
+        super(Text.translatable("fpsflow.config.title"));
         this.parent = parent;
     }
 
@@ -68,7 +68,7 @@ public class FPSFlowConfigScreen extends Screen {
             case BACKGROUND_FPS -> initBackgroundFpsTab(cx, lx, rx, y);
         }
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Done"), btn -> close())
+        addDrawableChild(ButtonWidget.builder(Text.translatable("gui.done"), btn -> close())
                 .dimensions(cx - 75, height - 30, 150, BTN_H).build());
     }
 
