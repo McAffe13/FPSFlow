@@ -19,7 +19,7 @@ FPSFlow is a client-side Fabric optimization mod that targets the biggest render
 | 🌙 | **Background FPS Limiter** | Caps frame rate when the window loses focus, is minimised, or on any loading/menu screen (reduces GPU spinning during startup). |
 | 🌍 | **Singleplayer Boost** | More aggressive adaptive culling in singleplayer — frees CPU for chunk generation threads so exploration stays smooth. |
 | ⚡ | **World Join Optimizer** | Culling distances ramp up from 35 % on join and return to 100 % over ~10 seconds — eliminates the initial FPS spike. |
-| 🎮 | **GUI & HUD Optimizer** | Dirty-flag hotbar caching; HUD throttling with immediate response to actual stat changes. |
+| 🎮 | **GUI & HUD Optimizer** | Dirty-flag hotbar caching (including `CustomModelData`); HUD throttling with immediate response to actual stat changes. Caches auto-clear on resource-pack reload to prevent stale item textures. |
 
 ---
 
@@ -31,6 +31,7 @@ Install [ModMenu](https://modrinth.com/mod/modmenu) to get a settings screen dir
 - Every button has a **tooltip** explaining exactly what the setting does
 - Switch profiles, toggle features, adjust LOD distances and FPS caps — no JSON editing required
 - New in 1.7.0: **Nameplate distance slider**, **Singleplayer Boost toggle**, and **Menu/Load FPS cap slider** added
+- New in 1.7.11: item render throttles automatically pause during server resource-pack reloads — no more flickering items when joining texture-pack servers
 
 ---
 
@@ -89,7 +90,7 @@ Both work. When EntityCulling (tr7zw) is installed, FPSFlow automatically disabl
 Rarely. The cache refreshes every 10 ticks (configurable). FPSFlow samples the entity's eye position for the raycast — naturally above the geometric centre, which avoids false-positives for small entities like floating heads and armor stands.
 
 **Does this work on servers?**
-FPSFlow is purely client-side — works with any server, no server installation required.
+FPSFlow is purely client-side — works with any server, no server installation required. Servers that send a custom resource pack are fully supported: FPSFlow detects the pack reload and pauses render throttles for ~3 seconds so item-frame maps and hotbar items always show the correct textures after the pack loads.
 
 ---
 

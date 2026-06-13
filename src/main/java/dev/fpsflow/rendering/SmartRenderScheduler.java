@@ -36,6 +36,7 @@ public final class SmartRenderScheduler {
             double fps = 1000.0 / frameMs;
             smoothedFps = smoothedFps * (1 - FPS_SMOOTHING) + fps * FPS_SMOOTHING;
         }
+        ResourcePackReloadTracker.getInstance().onTick();
         OptimizationManager.getInstance().tick();
     }
 

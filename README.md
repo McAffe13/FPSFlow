@@ -24,7 +24,7 @@ Client-side Fabric optimization mod targeting the biggest rendering bottlenecks 
 | **Background FPS Limiter** | Caps frame rate when the window is unfocused or minimised. |
 | **Singleplayer Boost** | More aggressive adaptive culling in singleplayer, freeing CPU for chunk generation threads. |
 | **World Join Optimizer** | Culling distances start at 35 % on join and ease back to 100 % over ~10 s. |
-| **GUI & HUD Optimization** | Dirty-flag hotbar caching; HUD update throttling with immediate response to stat changes. |
+| **GUI & HUD Optimization** | Dirty-flag hotbar caching (including `CustomModelData`); HUD throttling with immediate response to stat changes. Auto-clears on resource-pack reload to prevent stale textures. |
 
 ---
 

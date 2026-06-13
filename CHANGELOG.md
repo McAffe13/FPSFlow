@@ -1,6 +1,14 @@
 # Changelog
 ---
 
+## [1.7.11]
+
+### Fixed
+- **Item flickering on texture-pack servers** — When a server sends a resource pack, Minecraft reloads all textures and re-bakes item models asynchronously. The map item-frame throttle (`ItemFrameEntityRendererMixin`) kept cancelling `updateRenderState` calls during this window, leaving frames holding a stale render state that referenced invalidated texture handles — causing visible flickering. A new `ResourcePackReloadTracker` registers as a Fabric resource reload listener and activates a 60-tick cooldown after every reload; the throttle skips itself while the cooldown is active so render states are always refreshed immediately after a pack change. `HUDCache` is also reset on reload, so the hotbar dirty-flag system re-evaluates every slot on the first post-reload frame.
+- **Hotbar cache miss for `CustomModelData` items** — `itemStackHash` only covered item type, count, damage, and enchantment presence. Texture-pack servers commonly assign the `custom_model_data` component to items to drive custom model selection; two visually different items sharing the same base data but different `CustomModelData` values produced identical hashes, causing incorrect "nothing changed" cache hits. The hash now includes `CustomModelData`.
+
+---
+
 ## [1.7.10]
 
 ### Fixed

@@ -1,5 +1,6 @@
 package dev.fpsflow;
 
+import dev.fpsflow.rendering.ResourcePackReloadTracker;
 import dev.fpsflow.rendering.SmartRenderScheduler;
 import dev.fpsflow.updates.UpdateChecker;
 import net.fabricmc.api.ClientModInitializer;
@@ -13,6 +14,7 @@ public class FPSFlowClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         SmartRenderScheduler.getInstance().initialize();
+        ResourcePackReloadTracker.register();
         UpdateChecker.getInstance().checkAsync();
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) ->
                 UpdateChecker.getInstance().showPendingIfAny(client));
